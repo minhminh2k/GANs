@@ -1,0 +1,16 @@
+_target_: src.models.small_dcgan.small_dcgan_module.SmallDCGANLitModule
+
+generator:
+  _target_: src.models.small_dcgan.generator.Generator
+  z_dim: ${model.z_dim}
+  im_chan: 1
+  hidden_dim: 64
+
+discriminator:
+  _target_: src.models.small_dcgan.discriminator.Discriminator
+  im_chan: 1
+  hidden_dim: 64
+
+lr: 0.0002
+z_dim: 64
+

@@ -1,0 +1,7 @@
+wandb_callback:
+  _target_: src.utils.callback.wandb.WandbCallback
+  z_dim: 64
+  batch_size: 128
+  im_chan: 1
+  img_size: 28
+  use_fixed_noise: False

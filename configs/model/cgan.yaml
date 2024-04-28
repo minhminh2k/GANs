@@ -1,0 +1,16 @@
+_target_: src.models.cgan.cgan_module.CGANLitModule
+
+generator:
+  _target_: src.models.cgan.generator.Generator
+  input_channel: 74 
+  im_chan: 1 
+  hidden_channel: 64
+
+discriminator:
+  _target_: src.models.cgan.discriminator.Discriminator
+  input_channel: 11 
+  hidden_channel: 64
+
+lr: 0.0002
+z_dim: 64 
+n_classes: 10

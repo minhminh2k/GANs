@@ -1,0 +1,16 @@
+_target_: src.models.gan.gan_module.GANLitModule
+
+generator:
+  _target_: src.models.gan.generator.Generator
+  img_dim: 784
+  hidden_dim: 128
+  z_dim: ${model.z_dim}
+
+discriminator:
+  _target_: src.models.gan.discriminator.Discriminator
+  in_dim: 784
+  hidden_dim: 128
+
+lr: 0.00002
+z_dim: 64
+
