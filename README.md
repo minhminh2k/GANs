@@ -15,6 +15,10 @@
 
 What it does
 
+## References
+
+- [MIAI_GAN_EuroSAT](https://github.com/thangnch/MIAI_GAN_EuroSat)
+
 ## Installation
 
 #### Pip
@@ -60,6 +64,7 @@ python src/train.py trainer.max_epochs=20 data.batch_size=64
 ```
 
 ## Results:
+
 - [WanDB](https://wandb.ai/minhqd9112003/GANs?nw=nwuserminhqd9112003)
 
 ## Project Structure
