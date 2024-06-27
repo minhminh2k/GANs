@@ -8,6 +8,8 @@ import hydra
 from omegaconf import DictConfig
 from pytorch_lightning import LightningModule, Trainer
 from models.dcgan.model import DCGAN
+from src.models.gan_euro.generator import Generator
+from src.models.gan_euro.gan_module import EuroSatGANLitModule
 
 from src import utils
 import numpy as np
@@ -36,32 +38,40 @@ def inference(cfg: DictConfig):
     
     gen = model.generator
     gen.eval()
-    noise = torch.randn(1, cfg.model.z_dim)
+    # noise = torch.randn(1, cfg.model.z_dim)
     
-    pred = gen(noise)
-    
-    print(pred.shape) # 1, 1, 28, 28 or 1, 3, 64, 64
-    print(pred.max())
-    print(pred.min())
-    print()
-    pred = pred.detach()  # (1, 3, img_size, img_size)
-    # pred = torch.sigmoid(pred)
-    pred = denormalize(pred)
-    print(pred.shape)
-    print(pred.max())
-    print(pred.min())
-    # pred = pred.squeeze(0)
-    # pred = pred.permute(1, 2, 0)
-    # pred = pred.cpu().numpy() # .astype(np.uint8)
-    
-    # pred = pred * 255
-    # pred = pred.astype(np.uint8)
-    
-    # print(pred.max())
-    # print(pred.min())
-    # print(pred.sum())
-    # plt.imsave("./abc.jpg", pred)
-    # plt.show()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # model = EuroSatGANLitModule.load_from_checkpoint(
+    #     "checkpoints/epoch_199.ckpt",
+    #     # map_location=torch.device(device),
+    # )
+    # gen = model.generator
+    # gen.eval()
+    '''
+    for X, y in subset_loader:
+    fig, axes = plt.subplots(5, 3, figsize=(9, 9))
+
+    for i in range(5):
+        axes[i, 0].imshow(np.transpose(X.numpy()[i], (1, 2, 0)))
+        axes[i, 0].set_title("Input")
+        axes[i, 0].axis('off')
+
+        axes[i, 1].imshow(np.transpose(y.numpy()[i], (1, 2, 0)))
+        axes[i, 1].set_title("Target")
+        axes[i, 1].axis('off')
+
+        generated_image = generator(X[i].unsqueeze(0)).detach().numpy()[0]
+        axes[i, 2].imshow(np.transpose(generated_image, (1, 2, 0)))
+        axes[i, 2].set_title("Generated")
+        axes[i, 2].axis('off')
+
+    # Adjust layout
+    plt.tight_layout()
+    plt.savefig('Test.jpg')
+    plt.show()
+    '''
+
     
 if __name__ == "__main__":
     inference()

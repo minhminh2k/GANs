@@ -1,0 +1,9 @@
+_target_: src.models.gan_euro.gan_module.EuroSatGANLitModule
+
+generator:
+  _target_: src.models.gan_euro.generator.Generator
+
+discriminator:
+  _target_: src.models.gan_euro.discriminator.Discriminator
+
+lr: 0.0001

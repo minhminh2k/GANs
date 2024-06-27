@@ -5,7 +5,7 @@
 defaults:
   - _self_
   - data: euro.yaml
-  - model: gan-euro.yaml
+  - model: gan_euro.yaml
   - callbacks: default.yaml
   - logger: wandb # set logger here or use command line (e.g. `python train.py logger=tensorboard`)
   - trainer: default.yaml
